@@ -1,0 +1,31 @@
+
+{% block body %}
+    <div id="logo">
+        <a class="logo" href="{{ path('home') }}"> <img src="{{ asset('image/MAGUY1.png') }}" alt="logo IUT Université de Bordeaux"/></a>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            <span>Menu</span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link {% if c_menu is defined and c_menu == 'tickets' %}active{% endif %}" href="{{ path('ticketing.index') }}">Acheter des billets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Hébergement</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Attractions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Inscription</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Connexion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
