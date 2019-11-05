@@ -7,31 +7,43 @@
         {% include 'nav/nav.html.twig' %}
         <h1>bhkxjvdkjxvslj hcdjls!cjcbfmdilc</h1>
     </header>
-    <section id="attractions">
-        <h1>Nos attractions</h1>
-        <table>
-            <tr>
-                <td>
-                    <figure></figure>
-                </td>
-                <td>
-                    <figure></figure>
-                </td>
-                <td>
-                    <figure></figure>
-                </td>
-            </tr>
-        </table>
+    <section id="attraction">
+        <div class="container mt-4">
+            <h1 class="text-center mb-5">Nos attraction</h1>
+            <div class="row flex">
+                {% for attraction in attractions %}
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ path('attraction.show', {id: attraction.id, slug: attraction.slug}) }}">{{ attraction.title }}</a>
+                                </h5>
+                                <p class="card-text">{{ attraction.description |truncate(200, true, '...') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </section>
 
     <section id="accommodation">
-        <h1>Nos hébergement</h1>
-        <table>
-            <tr>
-                <td>n</td>
-                <td>n</td>
-                <td>n</td>
-            </tr>
-        </table>
+        <div class="container mt-4">
+            <h1 class="text-center mb-5">Nos hébergement</h1>
+            <div class="row flex">
+                {% for accommodation in accommodations %}
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ path('accommodation.show', {id: accommodation.id, slug: accommodation.slug}) }}">{{ accommodation.title }}</a>
+                                </h5>
+                                <p class="card-text">{{ accommodation.description |truncate(200, true, '...') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </section>
 {% endblock %}

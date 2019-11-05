@@ -1,0 +1,13 @@
+{% extends'base.html.twig' %}
+
+{% block title 'Gérer les biens' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Editer le biens</h1>
+        {{ form_start(form) }}
+            {{ form_rest(form) }}
+        <button class="btn btn-primary">sauvegarder</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
