@@ -1,13 +1,10 @@
 {% extends'base.html.twig' %}
 
-{% block title 'Gérer les biens' %}
+{% block title 'Gérer les attractions' %}
 
 {% block body %}
     <div class="container mt-4">
         <h1>Editer le biens</h1>
-        {{ form_start(form) }}
-            {{ form_rest(form) }}
-        <button class="btn btn-primary">sauvegarder</button>
-        {{ form_end(form) }}
+        {{ include ('admin/attraction/form.html.twig',{button: 'Editer'}) }}
     </div>
 {% endblock %}

@@ -1,0 +1,40 @@
+{% extends'base.html.twig' %}
+
+{% block title 'Liste des tickets' %}
+
+{% block body %}
+    <header>
+        {% include 'nav/navadmin.html.twig' %}
+    </header>
+    <div class="container mt-4">
+        <h1>Liste des tickets</h1>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>email</th>
+                <th>Du</th>
+                <th>Au</th>
+                <th>code</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ticket in tickets %}
+                <tr>
+                    <td>{{ ticket.username }}</td>
+                    <td>{{ ticket.email }}</td>
+                    <td>{{ ticket.day|date('d/m/Y') }}</td>
+                    <td>{{ ticket.endday|date('d/m/Y') }}</td>
+                    <td>{{ ticket.code }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class = 'container'>
+        <div class="pagination">
+            {{ knp_pagination_render(tickets) }}
+        </div>
+    </div>
+{% endblock %}

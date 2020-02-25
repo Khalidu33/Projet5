@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Attraction;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,9 +15,12 @@ class AttractionType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('Age')
+            ->add('age')
             ->add('size')
-            ->add('Season')
+            ->add('season')
+            ->add('imageFile', FileType::class, [
+                'required' => false
+            ])
         ;
     }
 

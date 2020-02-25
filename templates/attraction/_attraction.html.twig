@@ -1,0 +1,16 @@
+<div class="card mb-4">
+    {% if attraction.filename %}
+        <a href="{{ path('attraction.show', {slug: attraction.slug, id: attraction.id}) }}">
+            <img src="{{ vich_uploader_asset(attraction,'imageFile') }}" alt="card-img-top" style="width: 100%; height: 426px;">
+        </a>
+    {% endif %}
+    <div class="card-body">
+        <h5 class="card-title">
+            <a href="{{ path('attraction.show', {slug: attraction.slug, id: attraction.id}) }}">
+                {{ attraction.title }}
+            </a>
+        </h5>
+        <p class="card-text">{{ attraction.age }} ans</p>
+        <p class="card-text">{{ attraction.season }}</p>
+    </div>
+</div>

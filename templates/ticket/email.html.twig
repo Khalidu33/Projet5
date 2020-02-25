@@ -1,0 +1,15 @@
+{% extends'base.html.twig' %}
+
+{% block body %}
+  <h1>Récapitulatif de l'achat</h1>
+  <p>
+    Bonjour </br></br>
+    Voici le récapitulatif de votre achat
+  </p>
+
+    <p>Nom de réservation: {{ ticket.username }}</p>
+    <p>Réservation du {{ ticket.day|date('d/m/Y') }} au {{ ticket.endday|date('d/m/Y') }}</p>
+    <p>Adresse mail de réservation: {{ ticket.email }}</p>
+    <p>Code du ticket: {{ ticket.code }}</p>
+    
+{% endblock %}

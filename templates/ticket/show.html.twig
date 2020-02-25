@@ -1,0 +1,46 @@
+{% extends'base.html.twig' %}
+
+{% block title 'Gérer les hébergements' %}
+
+{% block body %}
+    <header>
+        {% include 'nav/nav.html.twig' %}
+    </header>
+    <div class="container mt-4">
+        <h1>Gérer les hébergements</h1>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom utilisateur</th>
+                <th>Date</th>
+                <th>Emil</th>
+                <th>Code</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ticket in tickets %}
+                <tr>
+                    <td>
+                       <p>Nom de réservation: {{ ticket.username }}</p>
+                    </td>
+                    <td>
+                        <p>Réservation du {{ ticket.day|date('d/m/Y') }} au {{ ticket.endday|date('d/m/Y') }}</p>
+                    </td>
+                    <td>
+                        <p>Adresse mail de réservation: {{ ticket.email }}</p>
+                    </td>
+                    <td>
+                        <p>Code du ticket: {{ ticket.code }}</p>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class = 'container'>
+            <div class="pagination">
+                {{ knp_pagination_render(tickets) }}
+            </div>
+        </div>
+{% endblock %}

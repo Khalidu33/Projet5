@@ -4,8 +4,10 @@ namespace App\Controller;
 use App\Entity\Accommodation;
 use App\Repository\AccommodationRepository;
 use Doctrine\Common\Persistence\ObjectManager;
-use phpDocumentor\Reflection\Types\This;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,7 +23,7 @@ class AccommodationController extends AbstractController
      */
     private $em;
 
-    public function __construct(AccommodationRepository $repository, ObjectManager $em)
+    public function __construct(AccommodationRepository $repository, EntityManagerInterface $em)
     {
         $this->repository = $repository;
         $this->em = $em;
@@ -31,10 +33,16 @@ class AccommodationController extends AbstractController
      * @Route("/hébergements", name="accommodation.index")
      * @return Response
      */
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
+        $accommodations = $paginator->paginate(
+            $this->repository->findAllQuery(),
+            $request->query->getInt('page', 1),
+            5
+        );
         return $this->render('accommodation/index.html.twig', [
-            'c_menu' => 'accommodations'
+            'accommodations' => $accommodations,
+            'c_menu' => 'accommodations',
         ]);
     }
 
@@ -47,17 +55,16 @@ class AccommodationController extends AbstractController
 
     public function show(Accommodation $accommodation, string $slug): Response
     {
-        if($accommodation->getSlug() !== $slug)
-        {
+        if ($accommodation->getSlug() !== $slug) {
             return $this->redirectToRoute('attraction.show', [
                 'id' => $accommodation->getId(),
-                'slug' => $accommodation->getSlug()
-            ],301);
+                'slug' => $accommodation->getSlug(),
+            ], 301);
         }
 
-        return $this->render('accommodation/show.html.twig',[
+        return $this->render('accommodation/show.html.twig', [
             'accommodation' => $accommodation,
-            'c_menu' => 'accommodations'
+            'c_menu' => 'accommodations',
         ]);
     }
 }

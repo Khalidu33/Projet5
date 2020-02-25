@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Accommodation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query;
 
 /**
  * @method Accommodation|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,16 @@ class AccommodationRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Accommodation::class);
+    }
+
+    /**
+     * @return Query
+     */
+
+    public function findAllQuery(): Query
+    {
+        return $this->createQueryBuilder('a')
+        ->getQuery();
     }
 
     /**

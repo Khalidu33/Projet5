@@ -4,7 +4,10 @@ namespace App\Controller;
 use App\Entity\Attraction;
 use App\Repository\AttractionRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,7 +23,7 @@ class AttractionController extends AbstractController
      */
     private $em;
 
-    public function __construct(AttractionRepository $repository, ObjectManager $em)
+    public function __construct(AttractionRepository $repository, EntityManagerInterface $em)
     {
         $this->repository = $repository;
         $this->em = $em;
@@ -30,14 +33,20 @@ class AttractionController extends AbstractController
      * @Route("/attractions", name="attraction.index")
      * @return Response
      */
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
+        $attractions = $paginator->paginate(
+            $this->repository->findAllQuery(),
+            $request->query->getInt('page', 1),
+            5
+        );
         return $this->render('attraction/index.html.twig', [
+            'attractions' => $attractions,
             'c_menu' => 'attractions'
         ]);
     }
 
-    /**
+      /**
      * @Route("/attractions/{slug}-{id}", name="attraction.show", requirements={"slug": "[a-z0-9\-]*"})
      * @param Attraction $attraction
      * @param string $slug
