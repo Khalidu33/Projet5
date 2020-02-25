@@ -83,7 +83,9 @@ class TicketController extends AbstractController
      * @return Response
      */
     public function paymentSysteme(TicketNotification $notification):Response
-    {
+    {   
+        $p = 25;
+        $tp = 
         $session = new Session();
         $ticketInfo = $session->get('ticketInfo');
         $user = $this->getUser();
