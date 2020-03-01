@@ -41,11 +41,20 @@ class Ticket
      */
     private $endday;
 
-    public function __construct($username)
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $price;
+
+
+    public function __construct($username, $price)
     {
         $codes = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $date = date("dmY");
         $this->code = 'ML-'.substr(str_shuffle($codes), 0, 16).'-'.$date;
+
+        $price = $price;
+        $this->price = $price;
 
         $username = $username;
         $this->username = $username;
@@ -112,6 +121,18 @@ class Ticket
     public function setEndday(\DateTimeInterface $endday): self
     {
         $this->endday = $endday;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

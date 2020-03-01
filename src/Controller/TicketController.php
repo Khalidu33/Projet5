@@ -36,7 +36,7 @@ class TicketController extends AbstractController
      * @Route("/billet", name="ticket.index")
      * @return Response
      */
-    public function index(Request $request, TicketNotification $notification): Response
+    public function index(): Response
     {
         $user = $this->getUser();
 
@@ -46,8 +46,11 @@ class TicketController extends AbstractController
         }
         else
         {
-            $username = $user->getUsername();   
-            $ticket = new Ticket($username);
+            $username = $user->getUsername(); 
+            
+            $price = 20;
+            
+            $ticket = new Ticket($username, $price);
         
             $form = $this->createForm(TicketType::class, $ticket,[
                 'action' => $this->generateUrl('ticket.payment'),
@@ -68,13 +71,56 @@ class TicketController extends AbstractController
      */
     public function payment(Request $request):Response
     {
-        $session = $this->get('session');
-        $ticketInfo = $request->request->all();
-        $session->set('ticketInfo', $ticketInfo);
-       
-        var_dump($ticketInfo);
-        return $this->render('ticket/payment.html.twig', [
+        $user = $this->getUser();
 
+        if(null === $user)
+        {
+            return $this->redirectToRoute('login');
+        }
+        else
+        {
+            if($request->isMethod('post') && !empty($_POST))
+            {
+                $ticketInfo = $request->request->all();
+                $session = $this->get('session');
+                $session->set('ticketInfo', $ticketInfo);
+
+                $ticketInfo = $ticketInfo['ticket'];
+
+                $jourArrivee = strtotime($ticketInfo['day']);
+                $jourFin = strtotime($ticketInfo['endday']);
+                $diff = abs($jourArrivee - $jourFin);
+                $diff = $diff / 3600 / 24;
+                $diff++;
+
+                $price = $diff * 20;
+                if($price == 40)
+                {
+                    $price = $price * 0.98;
+                }
+                elseif($price == 60)
+                {
+                    $price = $price * 0.95;
+                }
+                elseif($price >= 80)
+                {
+                    $price = $price * 0.92;
+                }
+
+                $username = $user->getUsername();
+                $ticket = new Ticket($username, $price);
+
+                $ticket->setEmail($ticketInfo['email']);
+                $ticket->setDay(new DateTime($ticketInfo['day']));
+                $ticket->setEndday(new DateTime($ticketInfo['endday']));
+            }
+            else
+            {
+                return $this->redirectToRoute('ticket.index');
+            }
+        }
+        return $this->render('ticket/payment.html.twig', [
+            'ticket' => $ticket
         ]);
     }
 
@@ -84,21 +130,53 @@ class TicketController extends AbstractController
      */
     public function paymentSysteme(TicketNotification $notification):Response
     {   
-        $p = 25;
-        $tp = 
-        $session = new Session();
-        $ticketInfo = $session->get('ticketInfo');
         $user = $this->getUser();
-        $username = $user->getUsername();
-        $ticket = new Ticket($username);
-        $ticketInfo = $ticketInfo['ticket'];
-        $ticket->setEmail($ticketInfo['email']);
-        $ticket->setDay(new DateTime($ticketInfo['day']));
-        $ticket->setEndday(new DateTime($ticketInfo['endday']));
-        $this->em->persist($ticket);
-        $this->em->flush();
-        $notification->Notify($ticket);
-        return $this->redirectToRoute('ticket.show');
+
+        if(null === $user)
+        {
+            return $this->redirectToRoute('login');
+        }
+        else
+        {
+            $session = new Session();
+            $ticketInfo = $session->get('ticketInfo');
+            
+            $ticketInfo = $ticketInfo['ticket'];
+
+            $jourArrivee = strtotime($ticketInfo['day']);
+            $jourFin = strtotime($ticketInfo['endday']);
+            $diff = abs($jourArrivee - $jourFin);
+            $diff = $diff / 3600 / 24;
+            $diff++;
+
+            $price = $diff * 20;
+            if($price == 40)
+            {
+                $price = $price * 0.98;
+            }
+            elseif($price == 60)
+            {
+                $price = $price * 0.95;
+            }
+            elseif($price >= 80)
+            {
+                $price = $price * 0.92;
+            }
+
+            $user = $this->getUser();
+            $username = $user->getUsername();
+            $ticket = new Ticket($username, $price);
+
+            $ticket->setEmail($ticketInfo['email']);
+            $ticket->setDay(new DateTime($ticketInfo['day']));
+            $ticket->setEndday(new DateTime($ticketInfo['endday']));
+
+            $this->em->persist($ticket);
+            $this->em->flush();
+            $notification->Notify($ticket);
+
+            return $this->redirectToRoute('ticket.show');
+        }
     }
 
     /**

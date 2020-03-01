@@ -32,6 +32,11 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     *     pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}$/",
+     *     match=true,
+     *     message="Le mot de passe doit contenir un minimum 8 caractères une lettre en majuscule une lettre en minuscule un chiffre un caractère spéciale !"
+     * )
      */
     private $password;
 

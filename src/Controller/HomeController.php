@@ -4,7 +4,6 @@ use App\Repository\AccommodationRepository;
 use App\Repository\AttractionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
@@ -32,7 +31,6 @@ class HomeController extends AbstractController
         $accommodations = $repository->findLatest();
         $attractions = $arepository->findLatest();
         return $this->render('home/home.html.twig', [
-            'c_menu' => 'home',
             'accommodations' => $accommodations,
             'attractions' => $attractions
         ]);

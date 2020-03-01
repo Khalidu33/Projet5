@@ -1,15 +1,26 @@
 {% extends'base.html.twig' %}
 
 {% block body %}
-  <h1>Récapitulatif de l'achat</h1>
-  <p>
-    Bonjour </br></br>
-    Voici le récapitulatif de votre achat
-  </p>
 
-    <p>Nom de réservation: {{ ticket.username }}</p>
-    <p>Réservation du {{ ticket.day|date('d/m/Y') }} au {{ ticket.endday|date('d/m/Y') }}</p>
-    <p>Adresse mail de réservation: {{ ticket.email }}</p>
-    <p>Code du ticket: {{ ticket.code }}</p>
-    
+<div class="container mt-4">
+    <h1>Récapitulatif de l'achat</h1>
+    <p>
+      Bonjour </br></br>
+      Voici le récapitulatif
+    </p>
+    <div class="row flex">
+      <div class="col-6">
+          <h2>Récapitulatif :</h2>
+          <div class="card mt-4">
+              <div class="card-body">
+                  <p>Nom de réservation :</br> {{ ticket.username }}</p></br>
+                  <p>Adresse mail de réservation :</br> {{ ticket.email }}</p></br>
+                  <p>Réservation du :</br> {{ ticket.day|date('d/m/Y') }} au {{ ticket.endday|date('d/m/Y') }}</p></br>
+                  <p>Code du ticket :</br> {{ ticket.code }}</p></br>
+                  <p>Prix :</br> {{ ticket.price }} €</p>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>   
 {% endblock %}

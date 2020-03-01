@@ -6,13 +6,39 @@
 
 {% block body %}
     <div class="container mt-4">
-        <form method="post" action="{{ path('payment.systeme') }}" style="display: inline-block">
-            <label for="number">Entrer le numero de carte bleue: </label></br>
-            <input type="number" name="number" id="number" onKeyPress="if(this.value.length==16) return false;" required></br></br>
+        <div class="row flex">
+            <div class="col-6">
+                <h2>Récapitulatif :</h2>
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <p>Nom de réservation :</br> {{ ticket.username }}</p></br>
+                        <p>Adresse mail de réservation :</br> {{ ticket.email }}</p></br>
+                        <p>Réservation du :</br> {{ ticket.day|date('d/m/Y') }} au {{ ticket.endday|date('d/m/Y') }}</p></br>
+                        <p>Code du ticket :</br> {{ ticket.code }}</p></br>
+                        <p>Prix :</br> {{ ticket.price }} €</p>
+                    </div>
+                </div>
+            </div>
 
-            <label for="cryptogramme">Entrer le cryptogramme: </label></br>
-            <input type="number" name="cryptogramme" id="cryptogramme" onKeyPress="if(this.value.length==3) return false;" required></br></br>
-            <input type="submit">
-        </form> 
+            <div class="col-5">
+                <h2>Paiement :</h2>
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <form method="post" action="{{ path('payment.systeme') }}" style="display: inline-block">
+                            <label for="cart">Entrer le numero de carte bleue: </label></br>
+                            <input type="text" name="cart" id="cart" onKeyPress="if(this.value.length==16) return false;" required></br></br>
+
+                            <label for="date">Date d'éxpiration: </label></br>
+                            <input type="number" name="datemonth" id="date" min="0" max="12" onKeyPress="if(this.value.length==2) return false;" required> /
+                            <input type="number" name="dateyear" id="date" min="0" max="31" onKeyPress="if(this.value.length==2) return false;" required></br></br>
+
+                            <label for="cryptogramme">Entrer le cryptogramme: </label></br>
+                            <input type="number" name="cryptogramme" id="cryptogramme" min="0" max="999" onKeyPress="if(this.value.length==3) return false;" required></br></br>
+                            <input type="submit">
+                        </form> 
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
