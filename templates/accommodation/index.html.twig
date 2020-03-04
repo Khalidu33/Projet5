@@ -5,13 +5,12 @@
 {% block body %}
     <header id="header">
         {% include 'nav/nav.html.twig' %}
-        <h1>bhkxjvdkjxvslj hcdjls!cjcbfmdilc</h1>
     </header>
 
     <div class="container mt-4">
-        <h1>Voir tous nos bien</h1>
+        <h1>Voir nos hébergement</h1>
 
-        <div class="row">
+        <div class="row mt-5">
             {% for accommodation in accommodations %}
                 <div class="col-md-4">
                     {% include 'accommodation/_accommodation.html.twig' %}

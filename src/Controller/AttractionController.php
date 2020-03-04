@@ -38,7 +38,7 @@ class AttractionController extends AbstractController
         $attractions = $paginator->paginate(
             $this->repository->findAllQuery(),
             $request->query->getInt('page', 1),
-            5
+            6
         );
         return $this->render('attraction/index.html.twig', [
             'attractions' => $attractions,

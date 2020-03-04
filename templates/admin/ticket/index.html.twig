@@ -17,6 +17,7 @@
                 <th>Du</th>
                 <th>Au</th>
                 <th>code</th>
+                <th>Prix</th>
             </tr>
             </thead>
             <tbody>
@@ -27,6 +28,7 @@
                     <td>{{ ticket.day|date('d/m/Y') }}</td>
                     <td>{{ ticket.endday|date('d/m/Y') }}</td>
                     <td>{{ ticket.code }}</td>
+                    <td>{{ ticket.price }}</td>
                 </tr>
             {% endfor %}
             </tbody>

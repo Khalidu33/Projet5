@@ -10,6 +10,6 @@
                 {{ accommodation.title }}
             </a>
         </h5>
-        <p class="card-text">{{ accommodation.description }}</p>
+        <p class="card-text">{{ accommodation.description|slice(0, 75) ~ '...'}}</p>
     </div>
 </div>

@@ -40,7 +40,7 @@ class AdminAttractionController extends AbstractController
         $attractions = $paginator->paginate(
             $this->repository->findAllQuery(),
             $request->query->getInt('page', 1),
-            5
+            6
         );
         return $this->render('admin/attraction/index.html.twig', [
             'attractions' => $attractions,

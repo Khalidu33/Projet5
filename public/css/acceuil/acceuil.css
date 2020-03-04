@@ -5,7 +5,13 @@
     height: 660px;
     text-align: center;
 }
-#header h1{
+#header h3{
     color: white;
-    margin-top: 10%;   
+    margin-top: 3%;
+    font-weight: bold;
+    text-shadow: 4px 4px 4px black;  
+}
+#hidden{
+    height: 32em;
+    overflow: hidden;
 }

@@ -20,7 +20,7 @@ class AdminTicketController extends AbstractController
         $tickets = $paginator->paginate(
             $repository->findAllQuery(),
             $request->query->getInt('page', 1),
-            5
+            6
         );
         return $this->render('admin/ticket/index.html.twig', [
             'tickets' => $tickets,

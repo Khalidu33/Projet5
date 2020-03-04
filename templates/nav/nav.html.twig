@@ -1,7 +1,7 @@
 
 {% block body %}
     <div id="logo">
-        <a class="logo" href="{{ path('home') }}"> <img src="{{ asset('image/MAGUY1.png') }}" alt="logo IUT Université de Bordeaux"/></a>
+        <a class="logo" href="{{ path('home') }}"> <img src="{{ asset('image/MAGUY1.png') }}" alt="logo"/></a>
     </div>
     <nav class="navbar navbar-expand-lg navbar-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,9 +13,11 @@
                 <li class="nav-item">
                     <a class="nav-link {% if c_menu is defined and c_menu == 'tickets' %}active{% endif %}" href="{{ path('ticket.index') }}">Acheter des billets</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if c_menu is defined and c_menu == 'ticket' %}active{% endif %}" href="{{ path('ticket.show') }}">Les billets achetés</a>
-                </li>
+                {% if  app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if c_menu is defined and c_menu == 'ticket' %}active{% endif %}" href="{{ path('ticket.show') }}">Les billets achetés</a>
+                    </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link {% if c_menu is defined and c_menu == 'accommodations' %}active{% endif %}" href="{{ path('accommodation.index') }}">Hébergements</a>
                 </li>
@@ -30,9 +32,11 @@
                     <a class="nav-link {% if c_menu is defined and c_menu == 'login' %}active{% endif %}" href="{{ path('login') }}">Connexion</a>
                 </li>
                 {% endif %}
+                {% if  app.user.roles is defined and app.user.roles == ['ROLE_ADMIN'] %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin.index') }}">Admin</a>
+                        <a class="nav-link" href="{{ path('admin.attraction.index') }}">Admin</a>
                     </li>
+                {% endif %}
                 {% if app.user %}
                     <ul class="navbar-nav">
                         <li class="nav-item">

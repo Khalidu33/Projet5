@@ -5,16 +5,20 @@
 {% block body %}
     <header id="header">
         {% include 'nav/nav.html.twig' %}
-        <h1>bhkxjvdkjxvslj hcdjls!cjcbfmdilckhalidu</h1>
     </header>
 
-    <div class="container">
-        
-        <h1>{{ attraction.title }}</h1>
-        <p class="card-text">{{ attraction.age }} ans</p>
-        <p class="card-text">{{ attraction.season }}</p>
-        <p class="card-text">{{ attraction.description }} ans</p>
-        <a href="" class="btn btn.primary">Contacter l'agence</a>
+    <div class="container mt-5">
+        <h1>{{ attraction.title }}</h1></br></br>
+        {% if attraction.filename %}
+            <img src="{{ vich_uploader_asset(attraction,'imageFile') }}" alt="card-img-top" style="width: 50%; height: 426px;">
+        {% endif %}</br></br>
+        <p class="card-text">Âge : {{ attraction.age }} ans</p>
+        <p class="card-text"> Saison : {{ attraction.season }}</p>
+        <p class="card-text"> Déscription : </br></br>{{ attraction.description }}</p>
+        <a href="{{ path('ticket.index') }}" class="btn btn-primary">Acheter un ticket</a>
+        {% if  app.user.roles is defined and app.user.roles == ['ROLE_ADMIN'] %}
+            <a href="{{ path('admin.attraction.edit', {id: attraction.id}) }}" class="btn btn-secondary">Editer</a>
+        {% endif %}
     </div>
 
 {% endblock %}

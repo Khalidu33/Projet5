@@ -11,9 +11,6 @@
                     <a class="nav-link" href="{{ path('home') }}">Acceuil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if c_menu is defined and c_menu == 'tickets' %}active{% endif %}" href="{{ path('ticket.index') }}">Acheter des billets</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link {% if c_menu is defined and c_menu == 'accommodations' %}active{% endif %}" href="{{ path('accommodation.index') }}">Hébergements</a>
                 </li>
                 <li class="nav-item">

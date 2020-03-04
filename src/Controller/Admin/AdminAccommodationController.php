@@ -38,7 +38,7 @@ class AdminAccommodationController extends AbstractController
         $accommodations = $paginator->paginate(
             $this->repository->findAllQuery(),
             $request->query->getInt('page', 1),
-            5
+            6
         );
         return $this->render('admin/accommodation/index.html.twig', [
             'accommodations' => $accommodations,

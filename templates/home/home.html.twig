@@ -4,8 +4,10 @@
 
 {% block body %}
     <header id="header">
-        {% include 'nav/nav.html.twig' %}
-        <h1>bhkxjvdkjxvslj hcdjls!cjcbfmdilc</h1>
+        <div id="hidden">
+            {% include 'nav/nav.html.twig' %}
+            <h3>Les parcs d’attractions sont les chouchous des enfants. Petits parcs à </br>l’ambiance familiale, parcs à thème (histoire, nature, science...) ou </br> encore , chez Maguy Land variez les plaisirs !</h3>
+        </div>
     </header>
     <section id="attraction">
         <div class="container mt-4">
@@ -23,7 +25,7 @@
                                 <h5 class="card-title">
                                     <a href="{{ path('attraction.show', {id: attraction.id, slug: attraction.slug}) }}">{{ attraction.title }}</a>
                                 </h5>
-                                <p class="card-text">{{ attraction.description | slice(0, 1) ~ '...' }}</p>
+                                <p class="card-text">{{ attraction.description|slice(0, 75) ~ '...' }}</p>
                             </div>
                         </div>
                     </div>
@@ -48,7 +50,7 @@
                                 <h5 class="card-title">
                                     <a href="{{ path('accommodation.show', {id: accommodation.id, slug: accommodation.slug}) }}">{{ accommodation.title }}</a>
                                 </h5>
-                                <p class="card-text">{{ accommodation.description | slice(0, 1) ~'...'}}</p>
+                                <p class="card-text">{{ accommodation.description|slice(0, 75) ~ '...'}}</p>
                             </div>
                         </div>
                     </div>

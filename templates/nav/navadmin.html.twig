@@ -10,10 +10,6 @@
                 <li class="nav-item">
                     <a class="nav-link"  href="{{ path('home') }}">Acceuil</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if c_menu is defined and c_menu == 'admins' %}active{% endif %}" href="{{ path('admin.index') }}">Admin</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link {% if c_menu is defined and c_menu == 'attractions' %}active{% endif %}" href="{{ path('admin.attraction.index') }}">Attractions</a>
                 </li>
                 <li class="nav-item">

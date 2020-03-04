@@ -5,12 +5,19 @@
 {% block body %}
     <header id="header">
         {% include 'nav/nav.html.twig' %}
-        <h1>bhkxjvdkjxvslj hcdjls!cjcbfmdilckhalidu</h1>
     </header>
 
-    <div class="container">
-        <h1>{{ accommodation.title }}</h1>
-        <a href="" class="btn btn.primary">Contacter l'agence</a>
+    <div class="container mt-5">
+        <h1>{{ accommodation.title }}</h1></br></br>
+        {% if accommodation.filename %}
+            <img src="{{ vich_uploader_asset(accommodation,'imageFile') }}" alt="card-img-top" style="width: 50%; height: 426px;">
+        {% endif %}</br></br>
+        <p class="card-text"> Déscription : </br></br>{{ accommodation.description }}</p>
+        <p class="card-text">Contacter l'agence : {{ accommodation.contact }}</p></br></br>
+        <a href="" class="btn btn-primary">Réserver une chambre</a>
+        {% if  app.user.roles is defined and app.user.roles == ['ROLE_ADMIN'] %}
+            <a href="{{ path('admin.accommodation.edit', {id: accommodation.id}) }}" class="btn btn-secondary">Editer</a>
+        {% endif %}
     </div>
 
 {% endblock %}
