@@ -40,3 +40,8 @@
     color: white !important;
     background: rgba(57, 111, 159, 0.7);
 }
+@media screen and (max-width: 710px){
+    .navbar {
+        font-size: 12px;
+    }
+}

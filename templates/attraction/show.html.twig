@@ -13,6 +13,7 @@
             <img src="{{ vich_uploader_asset(attraction,'imageFile') }}" alt="card-img-top" style="width: 50%; height: 426px;">
         {% endif %}</br></br>
         <p class="card-text">Âge : {{ attraction.age }} ans</p>
+        <p class="card-text">Taille : {{ attraction.size }} cm</p>
         <p class="card-text"> Saison : {{ attraction.season }}</p>
         <p class="card-text"> Déscription : </br></br>{{ attraction.description }}</p>
         <a href="{{ path('ticket.index') }}" class="btn btn-primary">Acheter un ticket</a>

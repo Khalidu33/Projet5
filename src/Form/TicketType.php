@@ -15,11 +15,13 @@ class TicketType extends AbstractType
         $builder
             ->add('day', DateType::class,[
                 'widget' => 'single_text',
-                'input'  => 'datetime_immutable'
+                'input'  => 'datetime_immutable',
+                'label' => 'Du'
             ])
             ->add('endday', DateType::class,[
                 'widget' => 'single_text',
-                'input'  => 'datetime_immutable'
+                'input'  => 'datetime_immutable',
+                'label' => 'Au'
             ])
             ->add('email')
         ;

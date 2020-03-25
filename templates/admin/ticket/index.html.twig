@@ -6,14 +6,14 @@
     <header>
         {% include 'nav/navadmin.html.twig' %}
     </header>
-    <div class="container mt-4">
+    <div class="container mt-4 ticket">
         <h1>Liste des tickets</h1>
 
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>Nom</th>
-                <th>email</th>
+                <th>Email</th>
                 <th>Du</th>
                 <th>Au</th>
                 <th>code</th>
@@ -28,7 +28,7 @@
                     <td>{{ ticket.day|date('d/m/Y') }}</td>
                     <td>{{ ticket.endday|date('d/m/Y') }}</td>
                     <td>{{ ticket.code }}</td>
-                    <td>{{ ticket.price }}</td>
+                    <td>{{ ticket.price }} €</td>
                 </tr>
             {% endfor %}
             </tbody>

@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link href="{{ asset('css/acceuil/acceuil.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/nav/nav.css') }}" rel="stylesheet" />
@@ -9,7 +10,9 @@
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
-{% block body %}{% endblock %}
+<div id="body">
+    {% block body %}{% endblock %}</br>
+</div>
 <div id="footer">
     {% block footer %}
         {% include 'footer/footer.html.twig' %}

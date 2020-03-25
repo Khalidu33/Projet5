@@ -11,6 +11,12 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
+                    <a class="nav-link {% if c_menu is defined and c_menu == 'attractions' %}active{% endif %}" href="{{ path('attraction.index') }}">Attractions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if c_menu is defined and c_menu == 'accommodations' %}active{% endif %}" href="{{ path('accommodation.index') }}">Hébergements</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {% if c_menu is defined and c_menu == 'tickets' %}active{% endif %}" href="{{ path('ticket.index') }}">Acheter des billets</a>
                 </li>
                 {% if  app.user %}
@@ -18,12 +24,6 @@
                         <a class="nav-link {% if c_menu is defined and c_menu == 'ticket' %}active{% endif %}" href="{{ path('ticket.show') }}">Les billets achetés</a>
                     </li>
                 {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link {% if c_menu is defined and c_menu == 'accommodations' %}active{% endif %}" href="{{ path('accommodation.index') }}">Hébergements</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if c_menu is defined and c_menu == 'attractions' %}active{% endif %}" href="{{ path('attraction.index') }}">Attractions</a>
-                </li>
                 {% if  app.user != true %}
                 <li class="nav-item">
                     <a class="nav-link {% if c_menu is defined and c_menu == 'register' %}active{% endif %}" href="{{ path('register') }}">Inscription</a>

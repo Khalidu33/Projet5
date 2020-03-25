@@ -7,16 +7,37 @@
         {% include 'nav/nav.html.twig' %}
     </header>
     <div class="container mt-4">
-        {{ form_start(form, {'action': path('ticket.payment'), 'method': 'POST'}) }}
-            <div class="row">
-                <div class="col-md-8">{{ form_row(form.email) }}</div>
+        <div class="row flex">
+            <div class="col-5">
+                <h2>Tarifs :</h2>
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <p>Une journée = a 20 €</p></br>
+                        <p>Deux jours = a -2%</p></br>
+                        <p>Trois jours = a -5%</p></br>
+                        <p>Quatre jours ou plus = a -8%</p>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-md-4">{{ form_row(form.day) }}</div>
-                <div class="col-md-4">{{ form_row(form.endday) }}</div>
+        
+            <div class="col-6">
+                <h2>Commender :</h2>
+                <div class="card mt-4">
+                    <div class="card-body">
+                        {{ form_start(form, {'action': path('ticket.payment'), 'method': 'POST'}) }}
+                            <div class="row">
+                                <div class="col-md-10">{{ form_row(form.email) }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">{{ form_row(form.day) }}</div>
+                                <div class="col-md-5">{{ form_row(form.endday) }}</div>
+                            </div>
+                        {{ form_rest(form) }}
+                        <button class="btn btn-primary">Acheter</button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
             </div>
-        {{ form_rest(form) }}
-        <button class="btn btn-primary">Acheter</button>
-        {{ form_end(form) }}
+        </div>
     </div>
 {% endblock %}

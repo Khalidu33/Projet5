@@ -25,7 +25,7 @@
             <tbody>
             {% for accommodation in accommodations %}
                 <tr>
-                    <td>{{ accommodation.title }}</td>
+                    <td class="tableaup">{{ accommodation.title }}</td>
                     <td>
                         <a href="{{ path('admin.accommodation.edit', {id: accommodation.id}) }}" class="btn btn-secondary">Editer</a>
                         <form method="post" action="{{ path('admin.accommodation.delete', {id: accommodation.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes vous vraiment sûr ?')">
@@ -39,7 +39,7 @@
             </tbody>
         </table>
         <div class="text-right">
-            <a href="{{ path('admin.accommodation.new') }}" class="btn btn-primary">Créer un nouveau bien</a>
+            <a href="{{ path('admin.accommodation.new') }}" class="btn btn-primary">Créer</a>
         </div>
     </div>
     <div class = 'container'>

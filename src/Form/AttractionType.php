@@ -13,13 +13,14 @@ class AttractionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('title', null ,array('label' => 'Titre'))
             ->add('description')
-            ->add('age')
-            ->add('size')
-            ->add('season')
+            ->add('age', null ,array('label' => 'Âge'))
+            ->add('size', null ,array('label' => 'Taille'))
+            ->add('season', null ,array('label' => 'Saison'))
             ->add('imageFile', FileType::class, [
-                'required' => false
+                'required' => false,
+                'label' => 'Image'
             ])
         ;
     }

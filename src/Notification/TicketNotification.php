@@ -2,6 +2,7 @@
 
 namespace App\Notification;
 
+use App\Entity\Contact;
 use App\Entity\Ticket;
 use Twig\Environment;
 
@@ -33,6 +34,23 @@ class TicketNotification
             ->setBody(
                 $this->rendere->render('ticket/email.html.twig',[
                         'ticket' => $ticket
+                    ]),
+                
+                'text/html'
+            );
+
+            $this->mailer->send($message);
+
+    }
+
+    public function message(Contact $contact)
+    {
+        $message = (new \Swift_Message('Message'))
+            ->setFrom('khalidu@hotmail.fr')
+            ->setTo('natsu33dr@gmail.com')
+            ->setBody(
+                $this->rendere->render('contact/email.html.twig',[
+                        'contact' => $contact
                     ]),
                 
                 'text/html'

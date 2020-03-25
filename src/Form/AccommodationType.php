@@ -14,9 +14,10 @@ class AccommodationType extends AbstractType
     {
         $builder
             ->add('imageFile', FileType::class, [
-                'required' => false
+                'required' => false,
+                'label' => 'Image'
             ])
-            ->add('title')
+            ->add('title', null ,array('label' => 'Titre'))
             ->add('description')
             ->add('contact')
         ;
