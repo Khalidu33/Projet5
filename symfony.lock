@@ -138,6 +138,9 @@
     "monolog/monolog": {
         "version": "2.0.1"
     },
+    "nephre/php-dbus": {
+        "version": "dev-master"
+    },
     "nikic/php-parser": {
         "version": "v4.3.0"
     },
