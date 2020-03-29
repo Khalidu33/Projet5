@@ -46,7 +46,7 @@ class TicketNotification
     public function message(Contact $contact)
     {
         $message = (new \Swift_Message('Message'))
-            ->setFrom('khalidu@hotmail.fr')
+            ->setFrom($contact->getEmail())
             ->setTo('natsu33dr@gmail.com')
             ->setBody(
                 $this->rendere->render('contact/email.html.twig',[
