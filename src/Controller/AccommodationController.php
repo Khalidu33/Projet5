@@ -3,8 +3,6 @@ namespace App\Controller;
 
 use App\Entity\Accommodation;
 use App\Repository\AccommodationRepository;
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,15 +16,10 @@ class AccommodationController extends AbstractController
      * @var AccommodationRepository
      */
     private $repository;
-    /**
-     * @var ObjectManager
-     */
-    private $em;
 
-    public function __construct(AccommodationRepository $repository, EntityManagerInterface $em)
+    public function __construct(AccommodationRepository $repository)
     {
         $this->repository = $repository;
-        $this->em = $em;
     }
 
     /**

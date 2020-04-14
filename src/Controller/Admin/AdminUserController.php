@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller\Admin;
 
-use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;

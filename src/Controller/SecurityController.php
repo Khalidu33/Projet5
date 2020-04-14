@@ -2,7 +2,6 @@
 namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
-use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,17 +13,12 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @var UserRepository
-     */
-    private $userRepository;
-    /**
      * @var ObjectManager
      */
     private $em;
 
-    public function __construct(UserRepository $userRepository, EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em)
     {
-        $this->userRepository = $userRepository;
         $this->em = $em;
     }
 

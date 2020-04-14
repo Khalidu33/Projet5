@@ -3,8 +3,6 @@ namespace App\Controller;
 
 use App\Entity\Attraction;
 use App\Repository\AttractionRepository;
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,15 +16,10 @@ class AttractionController extends AbstractController
      * @var AttractionRepository
      */
     private $repository;
-    /**
-     * @var ObjectManager
-     */
-    private $em;
 
-    public function __construct(AttractionRepository $repository, EntityManagerInterface $em)
+    public function __construct(AttractionRepository $repository)
     {
         $this->repository = $repository;
-        $this->em = $em;
     }
 
     /**
