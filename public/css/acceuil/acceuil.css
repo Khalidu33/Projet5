@@ -84,4 +84,14 @@
         font-size: 10px !important;
     }
 }
-
+@media screen and (max-width: 370px){
+    #hidden {
+        height: 19em;
+    }
+    #header h3 {
+        margin-top: 1em;
+    }
+    .nav-link {
+        padding: .3rem 1rem !important;
+    }
+}
