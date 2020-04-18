@@ -5,7 +5,7 @@
 <div class="container mt-4">
     <h1>Récapitulatif de l'achat</h1>
     <p>
-      Bonjour </br></br>
+      Bonjour <br/><br/>
       Voici le récapitulatif
     </p>
     <div class="row flex">
@@ -13,11 +13,11 @@
           <h2>Récapitulatif :</h2>
           <div class="card mt-4">
               <div class="card-body">
-                  <p>Nom de réservation :</br> {{ ticket.username }}</p></br>
-                  <p>Adresse mail de réservation :</br> {{ ticket.email }}</p></br>
-                  <p>Réservation du :</br> {{ ticket.day|date('d/m/Y') }} au {{ ticket.endday|date('d/m/Y') }}</p></br>
-                  <p>Code du ticket :</br> {{ ticket.code }}</p></br>
-                  <p>Prix :</br> {{ ticket.price }} €</p>
+                  <p>Nom de réservation :<br/> {{ ticket.username }}</p><br/>
+                  <p>Adresse mail de réservation :<br/> {{ ticket.email }}</p><br/>
+                  <p>Réservation du :<br/> {{ ticket.day|date('d/m/Y') }} au {{ ticket.endday|date('d/m/Y') }}</p><br/>
+                  <p>Code du ticket :<br/> {{ ticket.code }}</p><br/>
+                  <p>Prix :<br/> {{ ticket.price }} €</p>
               </div>
           </div>
       </div>

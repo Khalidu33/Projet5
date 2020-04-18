@@ -23,19 +23,19 @@
             {% for ticket in tickets %}
                 <tr>
                     <td>
-                       <p>Nom de réservation :</br> {{ ticket.username }}</p>
+                       <p>Nom de réservation :<br/> {{ ticket.username }}</p>
                     </td>
                     <td>
-                        <p>Réservation du :</br> {{ ticket.day|date('d/m/Y') }} au {{ ticket.endday|date('d/m/Y') }}</p>
+                        <p>Réservation du :<br/> {{ ticket.day|date('d/m/Y') }} au {{ ticket.endday|date('d/m/Y') }}</p>
                     </td>
                     <td>
-                        <p>Adresse mail de réservation :</br> {{ ticket.email }}</p>
+                        <p>Adresse mail de réservation :<br/> {{ ticket.email }}</p>
                     </td>
                     <td>
-                        <p>Code du ticket :</br> {{ ticket.code }}</p>
+                        <p>Code du ticket :<br/> {{ ticket.code }}</p>
                     </td>
                     <td>
-                        <p>Prix :</br> {{ ticket.price }} €</p>
+                        <p>Prix :<br/> {{ ticket.price }} €</p>
                     </td>
                 </tr>
             {% endfor %}
